@@ -1,9 +1,8 @@
 import React from 'react';
 
-
 const Admin = () => (
   <div>
-      <p>Admin</p>
+    <h1>Admin</h1>
   </div>
 );
 

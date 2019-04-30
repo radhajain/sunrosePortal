@@ -1,9 +1,8 @@
 import React from 'react';
 
-
 const Landing = () => (
   <div>
-      <p>Welcome to Sunrose</p>
+    <h1>Landing</h1>
   </div>
 );
 
