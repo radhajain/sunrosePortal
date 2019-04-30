@@ -1,0 +1,12 @@
+.nav-signed-out {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 20px;
+    color: white;
+    text-decoration: underline;
+}
+
+.nav-signed-out:hover {
+    font-weight:bold;
+}

@@ -9,18 +9,18 @@ import PasswordForgetPage from '../PasswordForget';
 import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
+import SchedulePage from '../Schedule';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 
 const App = () => (
   <Router>
-    <div>
+    <div style={{height: '100%'}}>
       <Navigation />
 
-      <hr />
-
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      <Route exact path={ROUTES.SCHEDULE} component={SchedulePage} />
       <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
       <Route
