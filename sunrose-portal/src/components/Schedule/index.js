@@ -1,47 +1,50 @@
 import React, { Component } from 'react';
 import Logo from '../../assets/Logo-No-Bkg-White.png';
+import BackBtn from '../../assets/back-btn.png';
 import './Schedule.css';
 
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 
-const CallNow = () => (
-    <div>
-        <p>There are counselors available to chat now.</p>
-        <p>Please head over to the Sunrose VR app and call when you're ready.</p>
-        <button>Learn More</button>
-    </div>
-);
+
+class CallNow extends Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return (
+            <div style={{width: '80%', padding: '30px 10%'}}>
+                {/* Here set show call now = false */}
+                <img src={BackBtn} className="back-btn" onClick={() => this.props.toggleNow()}/>
+                <p className="schedule-text">There are counselors available to chat now.</p>
+                <p className="schedule-text bold">Please head over to the Sunrose VR app and call when you're ready.</p>
+                <Link to={ROUTES.LANDING}><button className="schedule-btn">Learn More</button></Link>
+            </div>
+        );
+    }
+}
+    
+
 
 class AskChat extends Component {
     constructor(props) {
         super(props);
     }
-
-    toggleLater = () => {
-        this.props.toggleLater();
-    }
-
-    toggleNow = () => {
-        this.props.toggleNow();
-    }
-
-    togglePhone = () => {
-        this.props.togglePhone();
-    }
-
     render() {
-        return (
-            <div style={{paddingTop: 30}}>  
-                <p>There are counselors available to chat now.</p>
-                <p>When would you like to chat?</p>
+        return (  
+            <div style={{width: '80%', padding: '30px 10%'}}>  
+                <Link to={ROUTES.LANDING}><img src={BackBtn} className="back-btn"/></Link>
+                <p className="schedule-text">There are counselors available to chat now.</p>
+                <p className="schedule-text bold">When would you like to chat?</p>
                 <div>
                     <button 
                         className="schedule-btn"
-                        onClick={this.props.toggleNow}
+                        onClick={() => this.props.toggleNow()}
                         >
                         As soon as possible
                     </button>
                     <button 
-                        onClick={this.toggleLater} 
+                        onClick={() => this.props.toggleLater()} 
                         className={this.props.showLater ? "schedule-btn-active" : "schedule-btn"}
                         >
                         Later
@@ -50,9 +53,10 @@ class AskChat extends Component {
                 {this.props.showLater && 
                 (
                 <div>
-                    <p>If you like, we can let you know when someone is available.</p>
-                    <p>Around when would you like to chat?</p>
-                    <button onClick={this.togglePhone}>Next</button>
+                    <p className="schedule-text bold">You can use the Sunrose VR app to call in anytime.</p>
+                    <p className="schedule-text">If you'd like, we can let you know when someone is available.</p>
+                    <p className="schedule-text bold">Around when would you like to chat?</p>
+                    <button className="schedule-btn" onClick={() => this.props.togglePhone()}>Next</button>
 
                 </div>
                 )}
@@ -66,14 +70,14 @@ class EnterPhone extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (
-            <div style={{paddingTop: 30}}>  
-                <p>Leave your phone number and we'll text you when a counselor becomes available.</p>
-                <p>Don't worry - this text is automated so no one will see this number.</p>
-                <p>Sit back, relax, and we'll take care of the rest.</p>
-                <button>Done</button>
+            <div style={{width: '80%', padding: '30px 10%'}}>  
+                <img src={BackBtn} className="back-btn" onClick={() => this.props.togglePhone()}/>
+                <p className="schedule-text bold">Leave your phone number and we'll text you when a counselor becomes available.</p>
+                <p className="schedule-text">Don't worry - this text is automated so no one will see this number.</p>
+                <p className="schedule-text bold">Sit back, relax, and we'll take care of the rest.</p>
+                <Link to={ROUTES.LANDING}><button className="schedule-btn">Done</button></Link> 
             </div>
         );
     }
@@ -97,11 +101,13 @@ class Schedule extends Component {
     }
 
     toggleNow() {
-        this.setState({showCallNow: true});
+        const now = this.state.showCallNow;
+        this.setState({showCallNow: !now});
     }
 
     togglePhone() {
-        this.setState({showPhone: true});
+        const phone = this.state.showPhone;
+        this.setState({showPhone: !phone});
     }
 
     render () {
@@ -122,10 +128,14 @@ class Schedule extends Component {
                                     showLater = {this.state.showLater}/>
                             }
                             {this.state.showCallNow &&
-                                <CallNow/>
+                                <CallNow
+                                    toggleNow={this.toggleNow}
+                                />
                             }
                             {this.state.showPhone && 
-                                <EnterPhone />
+                                <EnterPhone 
+                                    togglePhone={this.togglePhone}
+                                    />
                             }
                         </div>
                     </div>
