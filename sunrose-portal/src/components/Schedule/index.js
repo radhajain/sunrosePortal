@@ -6,6 +6,10 @@ import './Schedule.css';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
+import { withStyles } from '@material-ui/core/styles';
+import InputMask from 'react-input-mask';
+import TextField from '@material-ui/core/TextField';
+
 
 class CallNow extends Component {
     constructor(props) {
@@ -14,7 +18,6 @@ class CallNow extends Component {
     render() {
         return (
             <div style={{width: '80%', padding: '30px 10%'}}>
-                {/* Here set show call now = false */}
                 <img src={BackBtn} className="back-btn" onClick={() => this.props.toggleNow()}/>
                 <p className="schedule-text">There are counselors available to chat now.</p>
                 <p className="schedule-text bold">Please head over to the Sunrose VR app and call when you're ready.</p>
@@ -56,7 +59,21 @@ class AskChat extends Component {
                     <p className="schedule-text bold">You can use the Sunrose VR app to call in anytime.</p>
                     <p className="schedule-text">If you'd like, we can let you know when someone is available.</p>
                     <p className="schedule-text bold">Around when would you like to chat?</p>
-                    <button className="schedule-btn" onClick={() => this.props.togglePhone()}>Next</button>
+                    <TextField
+                        id="time"
+                        type="time"
+                        defaultValue="19:30"
+                        style={{display: 'block'}}
+                        inputProps={{
+                        step: 900, // 5 min
+                        }}
+                    />
+                    <button 
+                        className="schedule-btn"  
+                        style={{marginTop: 25}}
+                        onClick={() => this.props.togglePhone()}>
+                        Next
+                    </button>
 
                 </div>
                 )}
@@ -69,6 +86,7 @@ class AskChat extends Component {
 class EnterPhone extends Component {
     constructor(props) {
         super(props);
+        this.state = {phone: null};
     }
     render() {
         return (
@@ -76,6 +94,14 @@ class EnterPhone extends Component {
                 <img src={BackBtn} className="back-btn" onClick={() => this.props.togglePhone()}/>
                 <p className="schedule-text bold">Leave your phone number and we'll text you when a counselor becomes available.</p>
                 <p className="schedule-text">Don't worry - this text is automated so no one will see this number.</p>
+                <TextField
+                        error
+                        id="phoneNum"
+                        type="number"
+                        style={{display: 'block'}}
+                >
+                    <InputMask mask="+1\(999) 999-9999" maskChar=" " value={this.state.phone} />
+                </TextField>
                 <p className="schedule-text bold">Sit back, relax, and we'll take care of the rest.</p>
                 <Link to={ROUTES.LANDING}><button className="schedule-btn">Done</button></Link> 
             </div>

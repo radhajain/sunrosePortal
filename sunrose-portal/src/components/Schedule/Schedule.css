@@ -41,6 +41,17 @@
     font-size: 14px;
     outline: none;
     color: #E57B87;
+    cursor: pointer;
+}
+
+.schedule-btn:hover {
+    width: 170px;
+    margin: 10px;
+    padding: 10px 0px;
+    font-size: 14px;
+    background-color: #E57B87;
+    color: white;
+    outline: none;
 }
 
 .schedule-btn-active {
@@ -59,3 +70,4 @@
     top: 30px;
     height: 20px;
 }
+
