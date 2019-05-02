@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
-
-import { SignUpLink } from '../SignUp';
+import Logo from '../../assets/Logo-No-Bkg-White.png';
 import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import './SignIn.scss';
+import { Link } from 'react-router-dom';
+
 
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
-    <SignInForm />
-    <PasswordForgetLink />
-    <SignUpLink />
+  <div className="landing-img-div">
+    <div className="schedule-logo">
+        <div className="schedule-logo-inner">
+            <img src={Logo} style={{width: '300px'}}/>
+        </div>
+    </div>
+    <div className="schedule-container-outer">
+        <div className="schedule-container-inner">
+          <div style={{width: '60%', padding: '0px 20%'}}>
+            <p className="sign-in-title">Welcome back.</p>
+            <SignInForm />
+            <PasswordForgetLink />
+            <SignUpLink />
+          </div>
+        </div>
+    </div>
   </div>
+);
+
+const SignUpLink = () => (
+  <p className="signin-signup-link">
+    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+  </p>
 );
 
 const INITIAL_STATE = {
@@ -55,11 +74,12 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} style={{display: 'flex', flexDirection: 'column'}}>
         <input
           name="email"
           value={email}
           onChange={this.onChange}
+          className="signin-input"
           type="text"
           placeholder="Email Address"
         />
@@ -67,10 +87,12 @@ class SignInFormBase extends Component {
           name="password"
           value={password}
           onChange={this.onChange}
+          className="signin-input"
           type="password"
           placeholder="Password"
+          style={{marginBottom: 25}}
         />
-        <button disabled={isInvalid} type="submit">
+        <button disabled={isInvalid} type="submit" className="signin-btn">
           Sign In
         </button>
 
@@ -80,6 +102,8 @@ class SignInFormBase extends Component {
   }
 }
 
+
+
 const SignInForm = compose(
   withRouter,
   withFirebase,
@@ -87,4 +111,4 @@ const SignInForm = compose(
 
 export default SignInPage;
 
-export { SignInForm };
+export { SignInForm, SignUpLink };

@@ -1,0 +1,100 @@
+@import '../../variables.scss';
+
+
+.home-container-outer {
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+} 
+
+.home-container-inner {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    background-color: rgba(255,255,255, 0.2);
+    border-radius: 20px;
+}
+
+
+.home-c1 {
+    flex-basis: 30%;
+    height: 100%;
+    padding: 0px 20px;
+    background-color:  rgba(255,255,255, 0.2);
+}
+
+.home-c2 {
+    flex-basis: 70%;
+    height: 100%;
+    padding:20px 20px;
+}
+
+.home-c2-title {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.home-c2-name {
+    color: $orange;
+    font-family: 'Raleway', 'sans-serif';
+    font-size: 32px;
+    letter-spacing: 0.07em;
+    margin: 0px;
+}
+
+.home-c2-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.home-c2-stats {
+    display: flex;
+    flex-direction: row;
+}
+
+.home-c2-stat {
+    text-align: center;
+    padding: 0px 20px;
+}
+
+.home-c2-stat-num {
+    color: $orange;
+    font-size: 40px;
+    font-family: 'Raleway', 'sans-serif';
+    margin-bottom: 20px;
+}
+
+.home-c2-stat-desc {
+    color: $green;
+    font-family: 'Raleway', 'sans-serif';
+    font-size: 12px;
+    text-overflow: wrap;
+}
+
+.home-c2-log {
+    width: 100%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    margin-top: 50px;
+}
+
+.home-log-btn {
+    width: 80%;
+    padding: 12px 10px;
+    background: linear-gradient(to right, $orange 10%, $peach 90%,$peach 100%);
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50px;
+    outline: none;
+}
+
+.log-container {
+    display: flex;
+    padding: 0px 50px;
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Logo from '../../assets/Logo-No-Bkg-White.png';
 import BackBtn from '../../assets/back-btn.png';
-import './Schedule.css';
+import './Schedule.scss';
 
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';

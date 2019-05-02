@@ -1,14 +1,26 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import Logo from '../../assets/Logo-No-Bkg-White.png';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
+  <div className="landing-img-div">
+  <div className="schedule-logo">
+      <div className="schedule-logo-inner">
+          <img src={Logo} style={{width: '300px'}}/>
+      </div>
   </div>
+  <div className="schedule-container-outer">
+      <div className="schedule-container-inner">
+        <div style={{width: '60%', padding: '0px 20%'}}>
+          <p className="sign-in-title">Create an account</p>
+          <SignUpForm />
+        </div>
+      </div>
+  </div>
+</div>
 );
 
 const INITIAL_STATE = {
@@ -50,6 +62,7 @@ class SignUpFormBase extends Component {
     const {
       username,
       email,
+      validationCode,
       passwordOne,
       passwordTwo,
       error,
@@ -58,15 +71,17 @@ class SignUpFormBase extends Component {
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
+      validationCode !== 'B19XCS210' ||
       email === '' ||
       username === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} style={{display: 'flex', flexDirection: 'column'}}>
         <input
           name="username"
           value={username}
           onChange={this.onChange}
+          className="signin-input"
           type="text"
           placeholder="Full Name"
         />
@@ -74,13 +89,23 @@ class SignUpFormBase extends Component {
           name="email"
           value={email}
           onChange={this.onChange}
+          className="signin-input"
           type="text"
           placeholder="Email Address"
+        />
+        <input
+          name="validationCode"
+          value={validationCode}
+          onChange={this.onChange}
+          className="signin-input"
+          type="text"
+          placeholder="Organization Code"
         />
         <input
           name="passwordOne"
           value={passwordOne}
           onChange={this.onChange}
+          className="signin-input"
           type="password"
           placeholder="Password"
         />
@@ -88,10 +113,12 @@ class SignUpFormBase extends Component {
           name="passwordTwo"
           value={passwordTwo}
           onChange={this.onChange}
+          className="signin-input"
           type="password"
           placeholder="Confirm Password"
+          style={{marginBottom: 25}}
         />
-        <button disabled={isInvalid} type="submit">
+        <button disabled={isInvalid} type="submit" className="signin-btn">
           Sign Up
         </button>
 
@@ -101,14 +128,10 @@ class SignUpFormBase extends Component {
   }
 }
 
-const SignUpLink = () => (
-  <p>
-    Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
-  </p>
-);
+
 
 const SignUpForm = withRouter(withFirebase(SignUpFormBase));
 
 export default SignUpPage;
 
-export { SignUpForm, SignUpLink };
+export { SignUpForm };

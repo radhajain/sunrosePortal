@@ -1,0 +1,133 @@
+
+
+@import "../../variables.scss";
+
+
+.landing-outer-div {
+    height: 100%;
+    margin: 0;
+}
+
+.landing-img-div {
+    background-image: url(../../assets/bkg-3.png);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.landing-content {
+    width: 100%;
+    height: 30%;
+    padding-top:200px;
+}
+
+.landing-content-inner {
+    width: 80%;
+    padding: 0% 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.landing-btn-wrapper {
+    margin: 5% auto;
+    text-align: center;
+    transform-style: perserve-3d;
+}
+
+.gradient {
+    background: linear-gradient(to right, $orange 10%, $peach 90%,$peach 100%);
+}
+
+/* fancy Button */
+.fancy-button {
+    display: inline-block;
+    margin: 30px;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #ffffff;
+    position: relative;
+    border-radius: 50px;
+    
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 40px;
+        position: absolute;
+        bottom: -5px;
+        left: 30px;
+        right: 30px;
+        z-index: -1;
+        border-radius: 30em;
+        filter: blur(20px) brightness(0.95);
+        transform-style: preserve-3d;
+        transition: all 0.3s ease-out;
+    }
+    i {
+        margin-top: -1px;
+        margin-right: 20px;
+        font-size: 1.265em;
+        vertical-align: middle;
+    }
+    span {
+        display: inline-block;
+        padding: 18px 60px;
+        border-radius: 50em;
+        position: relative;
+        z-index: 2;
+        will-change: transform, filter;
+        transform-style: preserve-3d;
+        transition: all 0.3s ease-out;
+    }
+    &:focus,
+    &:active {
+        color: #ffffff;
+    }
+    &:hover {
+        color: #ffffff;
+        
+        span {
+            filter: brightness(1.05) contrast(1.05);
+            transform: scale(0.95);
+        }
+        &:before {
+            bottom: 0;
+            filter: blur(10px) brightness(0.95);
+        }
+    }
+    &.pop-onhover {
+        
+        &:before {
+            opacity: 0;
+            bottom: 10px;
+        }
+        &:hover {
+            
+            &:before {
+                bottom: -7px;
+                opacity: 1;
+                filter: blur(20px);
+            }
+            span {
+                transform: scale(1.04);
+            }
+            &:active {
+                
+                span {
+                    filter: brightness(1) contrast(1);
+                    transform: scale(1);
+                    transition: all 0.15s ease-out;
+                }
+                &:before {
+                    bottom: 0;
+                    filter: blur(10px) brightness(0.95);
+                    transition: all 0.2s ease-out;
+                }
+            }
+        }
+    }
+}
+

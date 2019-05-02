@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navigation.css';
+import './Navigation.scss';
 
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';

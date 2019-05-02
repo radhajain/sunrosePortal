@@ -1,0 +1,44 @@
+@import '../../variables.scss';
+
+.sign-in-title {
+    color: $flamingo;
+    font-weight: bold;
+    font-size: 32px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.signin-input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid $flamingo;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+}
+
+.signin-btn {
+    color: $flamingo;
+    padding: 12px 0px;
+    font-size: 15px;
+    border-radius: 20px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.signin-forgotpw {
+    text-decoration: underline;
+    color: $flamingo;
+    font-family: 'Raleway', sans-serif;
+}
+
+.signin-signup-link {
+    color: darkgray;
+    margin-top: 50px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.signin-signup-href {
+    color: $primaryColor;
+    font-family: 'Raleway', sans-serif;
+}
