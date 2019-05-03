@@ -6,6 +6,7 @@
     padding-top: 100px;
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 80%;
 } 
 
@@ -43,6 +44,7 @@
     font-size: 32px;
     letter-spacing: 0.07em;
     margin: 0px;
+    display: inline-block;
 }
 
 .home-c2-logo {
@@ -96,5 +98,33 @@
 
 .log-container {
     display: flex;
+    justify-content: space-around;
     padding: 0px 50px;
+}
+
+.log-call {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img1 {
+    background: url('../../assets/call-option-1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.img2 {
+    background: url('../../assets/call-option-2.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.log-call-time {
+    background: rgba(255,255,255, 0.2);
+    color: $orange;
 }

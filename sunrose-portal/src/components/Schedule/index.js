@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Logo from '../../assets/Logo-No-Bkg-White.png';
-import BackBtn from '../../assets/back-btn.png';
+
 import './Schedule.scss';
 
 import { Link } from 'react-router-dom';
@@ -9,6 +9,7 @@ import * as ROUTES from '../../constants/routes';
 import { withStyles } from '@material-ui/core/styles';
 import InputMask from 'react-input-mask';
 import TextField from '@material-ui/core/TextField';
+import BackBtn from '../../assets/back-btn.png';
 
 
 class CallNow extends Component {
@@ -20,7 +21,8 @@ class CallNow extends Component {
             <div style={{width: '80%', padding: '30px 10%'}}>
                 <img src={BackBtn} className="back-btn" onClick={() => this.props.toggleNow()}/>
                 <p className="schedule-text">There are counselors available to chat now.</p>
-                <p className="schedule-text bold">Please head over to the Sunrose VR app and call when you're ready.</p>
+                <p className="schedule-text bold">Pop on your headset, and call us from the VR app when you're ready.</p>
+                <p className="schedule-text bold">We are excited to take this journey together.</p>
                 <Link to={ROUTES.LANDING}><button className="schedule-btn">Learn More</button></Link>
             </div>
         );
@@ -53,31 +55,41 @@ class AskChat extends Component {
                         Later
                     </button>
                 </div>
-                {this.props.showLater && 
-                (
-                <div>
-                    <p className="schedule-text bold">You can use the Sunrose VR app to call in anytime.</p>
-                    <p className="schedule-text">If you'd like, we can let you know when someone is available.</p>
-                    <p className="schedule-text bold">Around when would you like to chat?</p>
-                    <TextField
-                        id="time"
-                        type="time"
-                        defaultValue="19:30"
-                        style={{display: 'block'}}
-                        inputProps={{
-                        step: 900, // 5 min
-                        }}
-                    />
-                    <button 
-                        className="schedule-btn"  
-                        style={{marginTop: 25}}
-                        onClick={() => this.props.togglePhone()}>
-                        Next
-                    </button>
-
-                </div>
-                )}
             </div>
+        );
+    }
+}
+
+class ShowLater extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div>
+                <img src={BackBtn} className="back-btn" onClick={() => this.props.toggleLater()}/>
+                <p className="schedule-text bold">You can use the Sunrose VR app to call in anytime.</p>
+                <p className="schedule-text">If you'd like, we can let you know when someone is available.</p>
+                <p className="schedule-text bold">Around when would you like to chat?</p>
+                <TextField
+                    id="time"
+                    type="time"
+                    defaultValue="19:30"
+                    style={{display: 'block'}}
+                    inputProps={{
+                    step: 900, // 5 min
+                    }}
+                />
+                <button 
+                    className="schedule-btn"  
+                    style={{marginTop: 25}}
+                    onClick={() => this.props.togglePhone()}>
+                    Next
+                </button>
+
+            </div>
+                
         );
     }
 }
@@ -98,6 +110,7 @@ class EnterPhone extends Component {
                         error
                         id="phoneNum"
                         type="number"
+                        placeholder="(xxx) xxx-xxxx"
                         style={{display: 'block'}}
                 >
                     <InputMask mask="+1\(999) 999-9999" maskChar=" " value={this.state.phone} />
@@ -146,13 +159,16 @@ class Schedule extends Component {
                     </div>
                     <div className="schedule-container-outer">
                         <div className="schedule-container-inner">
-                            {!this.state.showCallNow && !this.state.showPhone && 
+                            {!this.state.showCallNow && !this.state.showLater && 
                                 <AskChat 
                                     toggleLater={this.toggleLater} 
                                     toggleNow = {this.toggleNow}
                                     togglePhone = {this.togglePhone}
                                     showLater = {this.state.showLater}/>
                             }
+                            {this.state.showLater && !this.state.showPhone && (
+                                <ShowLater togglePhone={this.togglePhone} toggleLater={this.toggleLater}/>
+                            )}
                             {this.state.showCallNow &&
                                 <CallNow
                                     toggleNow={this.toggleNow}

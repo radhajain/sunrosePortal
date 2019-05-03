@@ -1,28 +1,39 @@
 import React, { Component } from 'react';
 import Logo from '../../assets/Logo-Img.png';
+import StatusBtn from '../../assets/active-dot.png';
+import BackBtn from '../../assets/back-btn.png';
+import { Link } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 import './Home.scss'
 
 
-const LogScreen = () => (
-    <div className="home-container-inner" style={{alignItems: 'center', justifyContent: 'center'}}>
-        <div>
-        <p className="home-c2-name" >Which call would you like to log?</p>
-        <div className="log-container">
-            <div className="log-call">
-                <p>4:45pm</p>
-            </div>
-            <div className="log-call">
-                <p>4:30pm</p>
-            </div>
-        </div>
-        </div>
-    </div>
-);
+class LogScreen extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-
-
-
-
+    render() {
+        return (
+            <div className="home-container-outer" style={{alignItems: 'unset'}}>
+                <div className="home-container-inner" style={{alignItems: 'center', justifyContent: 'center', height: '60%', position: 'relative'}}>
+                <img src={BackBtn} className="back-btn" onClick={() => this.props.toggleSelectLog()}/>
+                    <div>
+                    <p className="home-c2-name" >Which call would you like to log?</p>
+                    <div className="log-container">
+                        <Link to={ROUTES.NOTES}> <div className="log-call img1">
+                            <p className="log-call-time">4:45pm</p>
+                        </div></Link>
+                        
+                        <Link to={ROUTES.NOTES}><div className="log-call img2">
+                            <p className="log-call-time">4:30pm</p>
+                        </div></Link>
+                    </div>
+                    </div>
+                </div>
+                </div>
+        );
+    }
+}
 
 
 
@@ -42,15 +53,19 @@ class Home extends Component {
     render() {
         return (
             <div className="landing-img-div">
-                <div className="home-container-outer">
+                
                     {!this.state.selectLog && (
+                        <div className="home-container-outer">
                         <div className="home-container-inner">
                             <div className="home-c1">
 
                             </div>
                             <div className="home-c2">
                                 <div className="home-c2-title">
-                                    <p className="home-c2-name">Karey</p>
+                                    <div>
+                                        <img src={StatusBtn} style={{width: 20, display: 'inline-block', padding: '0px 5px'}}></img>
+                                        <p className="home-c2-name">Karey</p>
+                                    </div>
                                     <img src={Logo} className="home-c2-logo"/>
                                 </div>
                                 <div className="home-c2-stats">
@@ -72,13 +87,14 @@ class Home extends Component {
                                 </div>
                             </div>
                         </div>
+                        </div>
 
                     )}
                     {this.state.selectLog && (
-                        <LogScreen />
+                        <LogScreen toggleSelectLog={this.toggleSelectLog} />
                     )}
                     
-                </div>
+                
             </div>
         );
     }

@@ -10,6 +10,7 @@ import HomePage from '../Home';
 import AccountPage from '../Account';
 import AdminPage from '../Admin';
 import SchedulePage from '../Schedule';
+import NotesPage from '../Notes';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -23,6 +24,7 @@ const App = () => (
       <Route exact path={ROUTES.SCHEDULE} component={SchedulePage} />
       <Route exact path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route exact path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route exact path={ROUTES.NOTES} component={NotesPage} />
       <Route
         exact
         path={ROUTES.PASSWORD_FORGET}
