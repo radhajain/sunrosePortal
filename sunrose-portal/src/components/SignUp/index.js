@@ -4,6 +4,7 @@ import Logo from '../../assets/Logo-No-Bkg-White.png';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import BackBtn from '../../assets/back-btn.png';
 
 const SignUpPage = () => (
   <div className="landing-img-div">
@@ -14,7 +15,8 @@ const SignUpPage = () => (
   </div>
   <div className="schedule-container-outer">
       <div className="schedule-container-inner">
-        <div style={{width: '60%', padding: '0px 20%'}}>
+        <Link to={ROUTES.SIGN_IN}><img src={BackBtn} className="back-btn"/></Link>
+        <div>
           <p className="sign-in-title">Create an account</p>
           <SignUpForm />
         </div>

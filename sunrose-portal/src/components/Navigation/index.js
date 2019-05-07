@@ -19,21 +19,7 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <ul>
-    <hr />
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.ACCOUNT}>Account</Link>
-    </li>
-    <li>
-      <SignOutButton />
-    </li>
-  </ul>
+  <div></div>
 );
 
 const NavigationNonAuth = () => (

@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import Logo from '../../assets/Logo-Img.png';
-import StatusBtn from '../../assets/active-dot.png';
+import ActiveDot from '../../assets/active-dot.png';
+import InactiveDot from '../../assets/inactive-dot.png';
 import BackBtn from '../../assets/back-btn.png';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import './Home.scss';
 import { AuthUserContext, withAuthorization } from '../Session';
 import { withFirebase } from '../Firebase';
-import Firebase from '../Firebase/firebase';
 import firebase from 'firebase'
+import Dropdown from 'react-bootstrap/Dropdown';
+import SignOut from '../SignOut';
+
 require('firebase/auth')
 
 
@@ -47,6 +50,7 @@ class HomeConst extends Component {
         super(props);
         this.state = {selectLog: false};
         this.toggleSelectLog = this.toggleSelectLog.bind(this);
+        this.toggleActive = this.toggleActive.bind(this);
         this.getUserData = this.getUserData.bind(this);
         this.state = {
             authUser: null,
@@ -62,11 +66,17 @@ class HomeConst extends Component {
             let user = snapshot.val();
             this.setState({
                 name_of_user: user.name,
+                active: true
             });
         });
         this.setState({authUser: true});
         this.setState({user_uid: uid});
     }  
+
+    toggleActive() {
+        var status = this.state.active;
+        this.setState({active: !status});
+    }
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged(function(authUser) {
@@ -85,6 +95,10 @@ class HomeConst extends Component {
 
 
     render() {
+        const dotSrc = (this.state.active ? ActiveDot : InactiveDot);
+        const StatusMsg = (this.state.active ? "Set yourself to away" : "Set yourself to active");
+        const userName = (this.state.name_of_user ? (this.state.name_of_user.substr(0,this.state.name_of_user.indexOf(' ')) ? this.state.name_of_user.substr(0,this.state.name_of_user.indexOf(' ')) : this.state.name_of_user ) : "The Bridge")
+
         return (
             <div className="landing-img-div">
                 
@@ -97,8 +111,17 @@ class HomeConst extends Component {
                             <div className="home-c2">
                                 <div className="home-c2-title">
                                     <div>
-                                        <img src={StatusBtn} style={{width: 20, display: 'inline-block', padding: '0px 5px'}}></img>
-                                        <p className="home-c2-name">{this.state.name_of_user}</p>
+                                        <img src={dotSrc} style={{width: 30, display: 'inline-block', padding: '0px 5px', verticalAlign: 'unset'}}></img>
+                                        <p className="home-c2-name">{userName}</p>
+                                        <Dropdown style={{display: 'inline-block'}}>
+                                            <Dropdown.Toggle style={{backgroundColor: 'unset', border: 'unset', verticalAlign: 'unset'}} id="dropdown-basic" />
+
+                                            <Dropdown.Menu>
+                                                <Link to={ROUTES.ACCOUNT}><Dropdown.Item href="#/action-1">My account</Dropdown.Item></Link>
+                                                <Dropdown.Item onClick={this.toggleActive}>{StatusMsg}</Dropdown.Item>
+                                                <Dropdown.Item href="#/action-3"><SignOut/></Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
                                     </div>
                                     <img src={Logo} className="home-c2-logo"/>
                                 </div>

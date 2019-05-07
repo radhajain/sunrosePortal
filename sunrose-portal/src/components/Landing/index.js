@@ -9,7 +9,7 @@ const Landing = () => (
       <div className="landing-content">
         <div className="landing-content-inner">
           <div style={{textAlign: 'center'}}>
-              <img src={Logo} style={{width: '80%', display: 'block', paddingLeft: '10%', paddingRight: '10%'}} />
+              <img src={Logo} style={{width: '100%', display: 'block', paddingLeft: '10%', paddingRight: '10%'}} />
               <p>An immersive counseling experience like no other. Completely anonymous.</p>
             <div className="landing-btn-wrapper">
               <Link to={ROUTES.SCHEDULE}>

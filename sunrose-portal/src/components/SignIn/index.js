@@ -7,6 +7,7 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import './SignIn.scss';
 import { Link } from 'react-router-dom';
+import BackBtn from '../../assets/back-btn.png';
 
 
 const SignInPage = () => (
@@ -18,7 +19,8 @@ const SignInPage = () => (
     </div>
     <div className="schedule-container-outer">
         <div className="schedule-container-inner">
-          <div style={{width: '60%', padding: '0px 20%'}}>
+          <div>
+            <Link to={ROUTES.LANDING}><img src={BackBtn} className="back-btn"/></Link>
             <p className="sign-in-title">Welcome back.</p>
             <SignInForm />
             <PasswordForgetLink />
