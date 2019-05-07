@@ -4,7 +4,12 @@ import StatusBtn from '../../assets/active-dot.png';
 import BackBtn from '../../assets/back-btn.png';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
-import './Home.scss'
+import './Home.scss';
+import { AuthUserContext, withAuthorization } from '../Session';
+import { withFirebase } from '../Firebase';
+import Firebase from '../Firebase/firebase';
+import firebase from 'firebase'
+require('firebase/auth')
 
 
 class LogScreen extends Component {
@@ -37,12 +42,41 @@ class LogScreen extends Component {
 
 
 
-class Home extends Component {
+class HomeConst extends Component {
     constructor(props) {
         super(props);
         this.state = {selectLog: false};
         this.toggleSelectLog = this.toggleSelectLog.bind(this);
+        this.getUserData = this.getUserData.bind(this);
+        this.state = {
+            authUser: null,
+            user_uid: null, // if we have the user's UID, we can index into & access our created user info data in firebase
+            name_of_user: null,
+        };
     }
+
+    // // Sets the 'name_of_user' state var by accessing the Firebase database
+    getUserData(uid) {
+        let UserRef = this.props.firebase.user(uid)
+        UserRef.on('value', (snapshot) => {
+            let user = snapshot.val();
+            this.setState({
+                name_of_user: user.name,
+            });
+        });
+        this.setState({authUser: true});
+        this.setState({user_uid: uid});
+    }  
+
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(function(authUser) {
+            if (authUser) {
+                this.getUserData(authUser.uid);
+            } else {
+            }
+         }.bind(this));
+      }
+    
 
     toggleSelectLog() {
         var select = this.state.selectLog;
@@ -64,7 +98,7 @@ class Home extends Component {
                                 <div className="home-c2-title">
                                     <div>
                                         <img src={StatusBtn} style={{width: 20, display: 'inline-block', padding: '0px 5px'}}></img>
-                                        <p className="home-c2-name">Karey</p>
+                                        <p className="home-c2-name">{this.state.name_of_user}</p>
                                     </div>
                                     <img src={Logo} className="home-c2-logo"/>
                                 </div>
@@ -100,5 +134,9 @@ class Home extends Component {
     }
 } 
 
+const Home = withFirebase(HomeConst)
 
-export default Home;
+const condition = authUser => !!authUser;
+
+export default withAuthorization(condition)(Home);
+

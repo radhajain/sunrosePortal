@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
 import './Navigation.scss';
 
 import SignOutButton from '../SignOut';
+import { Link } from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 
 import { AuthUserContext } from '../Session';
