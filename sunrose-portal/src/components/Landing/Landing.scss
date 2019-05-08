@@ -8,6 +8,22 @@
     margin: 0;
 }
 
+.landing-parent {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.landing-child {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
 .landing-img-div {
     background-image: url(../../assets/bkg-3.png);
     height: 100%;
@@ -16,10 +32,38 @@
     background-size: cover;
 }
 
+.landing-edge-1 {
+    position: absolute;
+    top: 20vh;
+    left: -20px;
+    height: 50vh;
+}
+
+.landing-edge-2 {
+    position: absolute;
+    right: -20px;
+    top: 40vh;
+    height: 50vh;
+}
+
+.landing-bkg2 {
+    background-image: url(../../assets/bkg-4.png);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.landing-bkg3 {
+    background-image: url(../../assets/bkg-5.png);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .landing-content {
     width: 100%;
-    height: 30%;
-    padding-top:200px;
 }
 
 .landing-content-inner {
@@ -33,6 +77,67 @@
     margin: 5% auto;
     text-align: center;
     transform-style: perserve-3d;
+}
+
+
+.landing-big-text {  
+    color: $orange;
+    font-family: 'Raleway', 'sans-serif';
+    font-size: 62px;
+    letter-spacing: 0.07em;
+    text-align: center;
+    margin: 0px;
+    display: inline-block;
+    font-weight: lighter;
+}
+
+.landing-section-title {
+    font-family: 'Raleway', 'sans-serif';
+    font-size: 42px;
+    letter-spacing: 0.09em;
+    font-weight: lighter;
+    margin-bottom: 2rem;
+    line-height: 1.2em;
+}
+
+.landing-section-text {
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.07em;
+}
+
+.landing-child-col {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    justify-content: center;
+}
+
+.landing-child-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.landing-bottom-arrow {
+    position: absolute;
+    bottom: -70px;
+    z-index: 100;
+    height:150px;
+}
+
+.landing-bottom-label {
+    position: absolute;
+    bottom: 90px;
+    z-index: 100;
+    font-family: 'Nunito', sans-serif;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: $yellow;
+    font-style: italic;
 }
 
 .gradient {

@@ -111,7 +111,7 @@ class EnterPhone extends Component {
                         id="phoneNum"
                         type="number"
                         placeholder="(xxx) xxx-xxxx"
-                        style={{display: 'block'}}
+                        style={{display: 'block', marginBottom: 20}}
                 >
                     <InputMask mask="+1\(999) 999-9999" maskChar=" " value={this.state.phone} />
                 </TextField>
