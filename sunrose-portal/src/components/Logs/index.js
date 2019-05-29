@@ -44,13 +44,17 @@ class LogsBase extends Component {
         function getDuration(start, end) {
             var startDate = new Date();
             var endDate = new Date();
-            var startTimeParsed = start.split(' ')[1].split('/');
+            var startTimeParsed = start.split(' ')[1].split(':'); 
             startDate.setHours(startTimeParsed[0], startTimeParsed[1]);
-            var endTimeParsed = end.split(' ')[1].split('/');
+            var endTimeParsed = end.split(' ')[1].split(':');
             endDate.setHours(endTimeParsed[0], endTimeParsed[1]);
             var differenceInSeconds = (Math.abs(endDate - startDate))/1000;
             var hours = differenceInSeconds / 3600;
             var minutes = Math.round((differenceInSeconds % 3600) / 60);
+            if (hours == 0) {
+                var diffString = minutes + " mins";
+                return diffString;
+            }
             var diffString = hours + " hrs " + minutes + " mins"
             return diffString;
         }
@@ -62,36 +66,70 @@ class LogsBase extends Component {
             return '';
             
         }
+
+        function getStartTime(start) {
+            if (start !== undefined) {
+                var time = start.split(' ')[1];
+                time = time.slice(0, -3);
+                return time;
+            }
+            return '';
+        }
         return (
             <div className="landing-img-div">
                  <div className="home-container-outer">
                         <div className="home-container-inner" style={{justifyContent: 'center', position: 'relative', flexDirection: 'column'}}>
                         <Link to={ROUTES.HOME}><img src={BackBtn} className="back-btn"/></Link>
-                            <div style={{height: '90%', paddingTop: '5%', paddingBottom: '5%', textAlign: 'center'}}>
-                                <p>All Calls Log</p>
+                            <div style={{height: '90%',  paddingBottom: '5%', textAlign: 'center'}}>
+                                <p className="log-title">All Calls Log</p>
                                 <div className="logs-container">
                                     <div className="log-row">
-                                        <div><p className="log-header">Environment</p></div>
-                                        <div><p className="log-header">Date</p></div>
-                                        <div><p className="log-header">Counselor</p></div>
-                                        <div><p className="log-header">Start time</p></div>
-                                        <div><p className="log-header">Duration</p></div>
-                                        <div><p className="log-header">Notes</p></div>
+                                        <div className="log-cell"><p className="log-header">Environment</p></div>
+                                        <div className="log-cell"><p className="log-header">Date</p></div>
+                                        <div className="log-cell"><p className="log-header">Counselor</p></div>
+                                        <div className="log-cell"><p className="log-header">Start time</p></div>
+                                        <div className="log-cell"><p className="log-header">Duration</p></div>
+                                        <div className="log-cell"><p className="log-header">Notes</p></div>
                                     </div>
                                     {this.state.allCalls.map((call, key) => {
                                         return (
                                             <div className="log-row" id={key}>
-                                                <div>
+                                                <div className="log-cell">
                                                     <div className="log-call img2"></div>
                                                 </div>
-                                                <div><p>{getDate(call.start_time)}</p></div>
-                                                <div><p>{call.counselor_id}</p></div>
-                                                <div><p>{call.start_time}</p></div>
-                                                <div><p>{getDuration(call.start_time, call.end_time)}</p></div>
-                                                <div><p>{call.notes}</p></div>
+                                                <div className="log-cell"><p>{getDate(call.start_time)}</p></div>
+                                                <div className="log-cell"><p>{call.counselor_id}</p></div>
+                                                <div className="log-cell"><p>{getStartTime(call.start_time)}</p></div>
+                                                <div className="log-cell"><p>{getDuration(call.start_time, call.end_time)}</p></div>
+                                                <div className="log-cell"><p>{call.notes}</p></div>
                                             </div>
                                         );
                                     })}
+
+                                    {/* <table className="log-container">
+                                        <tr>
+                                            <td><p className="log-header">Environment</p></td>
+                                            <td><p className="log-header">Date</p></td>
+                                            <td><p className="log-header">Counselor</p></td>
+                                            <td><p className="log-header">Start time</p></td>
+                                            <td><p className="log-header">Duration</p></td>
+                                            <td><p className="log-header">Notes</p></td>
+                                        </tr>
+                                        {this.state.allCalls.map((call, key) => {
+                                            return (
+                                                <tr className="log-row" id={key}>
+                                                    <td>
+                                                        <div className="log-call img2"></div>
+                                                    </td>
+                                                    <td><p>{getDate(call.start_time)}</p></td>
+                                                    <td><p>{call.counselor_id}</p></td>
+                                                    <td><p>{getStartTime(call.start_time)}</p></td>
+                                                    <td><p>{getDuration(call.start_time, call.end_time)}</p></td>
+                                                    <td><p>{call.notes}</p></td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </table> */}
                                     
                                 </div>
                             </div>

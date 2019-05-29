@@ -11,37 +11,11 @@ import { withFirebase } from '../Firebase';
 import firebase from 'firebase';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SignOut from '../SignOut';
-
+import LogScreen from '../LogScreen';
 require('firebase/auth')
 
 
-class LogScreen extends Component {
-    constructor(props) {
-        super(props);
-    }
 
-    render() {
-        return (
-            <div className="home-container-outer" style={{alignItems: 'unset'}}>
-                <div className="home-container-inner" style={{alignItems: 'center', justifyContent: 'center', height: '60%', position: 'relative'}}>
-                <img src={BackBtn} className="back-btn" onClick={() => this.props.toggleSelectLog()}/>
-                    <div>
-                    <p className="home-c2-name" >Which call would you like to log?</p>
-                    <div className="log-container">
-                        <Link to={ROUTES.NOTES}> <div className="log-call img1">
-                            <p className="log-call-time">4:45pm</p>
-                        </div></Link>
-                        
-                        <Link to={ROUTES.NOTES}><div className="log-call img2">
-                            <p className="log-call-time">4:30pm</p>
-                        </div></Link>
-                    </div>
-                    </div>
-                </div>
-                </div>
-        );
-    }
-}
 
 
 
@@ -141,7 +115,7 @@ class HomeConst extends Component {
                                 </div>
                                 <div className="home-c2-log">
                                 <button className="home-log-btn" onClick={this.toggleSelectLog}>Log a call</button>
-                                <Link to={ROUTES.LOGS}><p>View previous logs</p></Link>
+                                <Link to={ROUTES.LOGS} className="home-prev-logs"><p>View previous logs</p></Link>
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .logs-container {
     overflow-y: scroll;
     height: 100%;
@@ -5,6 +7,7 @@
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
+    padding: 20px;
 }
 
 .log-row {
@@ -16,5 +19,24 @@
 
 .log-header {
     font-weight: bold;
+}
+
+.log-cell {
+    flex-basis: 16%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log-title {
+    color: $orange;
+    font-family: 'Raleway', 'sans-serif';
+    font-size: 42px;
+    letter-spacing: 0.07em;
     text-align: center;
+
+    display: inline-block;
+    font-weight: lighter;
+    
+    
 }

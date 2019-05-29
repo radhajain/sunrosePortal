@@ -1,0 +1,10 @@
+.log-screen-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.log-screen-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
