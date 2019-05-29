@@ -8,7 +8,7 @@ import * as ROUTES from '../../constants/routes';
 import './Home.scss';
 import { AuthUserContext, withAuthorization } from '../Session';
 import { withFirebase } from '../Firebase';
-import firebase from 'firebase'
+import firebase from 'firebase';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SignOut from '../SignOut';
 
@@ -114,12 +114,12 @@ class HomeConst extends Component {
                                         <img src={dotSrc} style={{width: 30, display: 'inline-block', padding: '0px 5px', verticalAlign: 'unset'}}></img>
                                         <p className="home-c2-name">{userName}</p>
                                         <Dropdown style={{display: 'inline-block'}}>
-                                            <Dropdown.Toggle style={{backgroundColor: 'unset', border: 'unset', verticalAlign: 'unset'}} id="dropdown-basic" />
+                                            <Dropdown.Toggle style={{backgroundColor: 'unset', border: 'unset', verticalAlign: 'unset', boxShadow: 'none'}} id="dropdown-basic" />
 
                                             <Dropdown.Menu>
-                                                <Link to={ROUTES.ACCOUNT}><Dropdown.Item href="#/action-1">My account</Dropdown.Item></Link>
+                                                <Link to={ROUTES.ACCOUNT}><Dropdown.Item>My account</Dropdown.Item></Link>
                                                 <Dropdown.Item onClick={this.toggleActive}>{StatusMsg}</Dropdown.Item>
-                                                <Dropdown.Item href="#/action-3"><SignOut/></Dropdown.Item>
+                                                <Dropdown.Item><SignOut/></Dropdown.Item>
                                             </Dropdown.Menu>
                                         </Dropdown>
                                     </div>
@@ -141,6 +141,7 @@ class HomeConst extends Component {
                                 </div>
                                 <div className="home-c2-log">
                                 <button className="home-log-btn" onClick={this.toggleSelectLog}>Log a call</button>
+                                <Link to={ROUTES.LOGS}><p>View previous logs</p></Link>
                                 </div>
                             </div>
                         </div>

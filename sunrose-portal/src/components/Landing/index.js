@@ -8,9 +8,15 @@ import edge1 from '../../assets/landing-edge-1.png';
 import edge2 from '../../assets/landing-edge-2.png';
 import arrow from '../../assets/landing-arrow.png';
 
-const Landing = () => (
+class Landing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.learnMoreRef = React.createRef();
+  }
 
-    <div className="landing-parent">
+  render() {
+    return (
+      <div className="landing-parent">
       <div className="landing-img-div landing-child">
         <div className="landing-content">
           <div className="landing-content-inner">
@@ -23,14 +29,16 @@ const Landing = () => (
                     <span>Click here to chat</span>
                   </a>
                   </Link>
+                  
               </div>
+              <Link to={ROUTES.SIGN_IN} className="nav-signed-out">Are you a counselor?</Link>
             </div>
           </div>
         </div>
         <p className="landing-bottom-label" style={{color: '#ac9591'}}>Learn more</p>
         <img src={arrow} className="landing-bottom-arrow"/>
       </div>
-      <div className="landing-child" style={{backgroundColor: 'white'}}>
+      <div className="landing-child" style={{backgroundColor: 'white'}} ref={this.learnMoreRef}>
         <img src={edge1} className="landing-edge-1"/>
         <img src={edge2} className="landing-edge-2"/>
         <div className="landing-content-inner" style={{height: 'auto', padding: '0px 20%'}}>
@@ -49,7 +57,7 @@ const Landing = () => (
                 <p className="landing-section-text" style={{color: 'white'}}>In Sunrose, conversations with a counselor take place in virtual reality environments. These environments are designed to feel fully immersive, tranquil, safe, and private. With Sunrose, you can maintain anonymity while being able to engage and feel heard as if the counselor was right there with you.</p>
               </div>
             </div>
-           
+          
           </div>
           <p className="landing-bottom-label">How it works</p>
           <img src={arrow} className="landing-bottom-arrow"/>
@@ -102,7 +110,11 @@ const Landing = () => (
       </div>
       </div>
     </div>
-    
-);
+  
+    );
+  }
+}
+
+
 
 export default Landing;
