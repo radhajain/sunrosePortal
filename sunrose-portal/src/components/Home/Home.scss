@@ -16,20 +16,19 @@
     display: flex;
     background-color: rgba(255,255,255, 0.2);
     border-radius: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
 
-.home-c1 {
-    flex-basis: 30%;
-    height: 100%;
-    padding: 0px 20px;
-    background-color:  rgba(255,255,255, 0.2);
-}
 
 .home-c2 {
-    flex-basis: 70%;
     height: 100%;
     padding:20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 .home-c2-title {
@@ -55,25 +54,31 @@
 .home-c2-stats {
     display: flex;
     flex-direction: row;
+    margin-top: 50px;
 }
 
 .home-c2-stat {
     text-align: center;
     padding: 0px 20px;
+    background-color: rgba(23,131,126, 0.8);
+    background: radial-gradient(#5CBCAD, $green);
+    border-radius: 50%;
+    padding: 30px 50px;
+    margin-left: 100px;
 }
 
 .home-c2-stat-num {
-    color: $orange;
-    font-size: 40px;
+    color: white;
+    font-size: 50px;
     font-family: 'Raleway', 'sans-serif';
-    margin-bottom: 20px;
 }
 
 .home-c2-stat-desc {
-    color: $green;
+    color: white;
     font-family: 'Raleway', 'sans-serif';
     font-size: 12px;
     text-overflow: wrap;
+    width: 100px;
 }
 
 .home-c2-log {
@@ -85,7 +90,7 @@
 }
 
 .home-log-btn {
-    width: 80%;
+    width: 100%;
     padding: 12px 10px;
     background: linear-gradient(to right, $orange 10%, $peach 90%,$peach 100%);
     color: white;
@@ -111,12 +116,12 @@
 }
 
 .home-prev-logs {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-    color: #17837E;
+    margin-top: 30px;
+    color: rgba(23,131,126, 0.6);
 }
 
 .img1 {

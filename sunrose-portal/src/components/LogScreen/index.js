@@ -21,13 +21,16 @@ class LogScreen extends Component {
           console.log(calls);
           let raw = [];
           for (let call in calls) {
-            if (calls[call].start_time !== undefined && !calls[call].logged) {
+            if (calls[call].StartTime !== undefined && !calls[call].Logged) {
                 raw.push({
-                    counselor_id: calls[call].counselor_id,
-                    end_time: calls[call].end_time,
-                    start_time: calls[call].start_time,
-                    environment: calls[call].environment,
-                    notes: calls[call].notes
+                    id: call,
+                    counselor_id: calls[call].CounselourId,
+                    counselor_name: calls[call].CounselourName,
+                    end_time: calls[call].EndTime,
+                    duration: calls[call].Duration,
+                    start_time: calls[call].StartTime,
+                    environment: calls[call].Environment,
+                    notes: calls[call].Notes
                   });
             }
           }
@@ -46,8 +49,8 @@ class LogScreen extends Component {
     render() {
         function getStartTime(start) {
             if (start !== undefined) {
-                var time = start.split(' ')[1];
-                time = time.slice(0, -3);
+                var time = start.split('T')[1];
+                time = time.slice(0, 5);
                 return time;
             }
             return '';
@@ -62,20 +65,38 @@ class LogScreen extends Component {
                         {this.state.unloggedCalls.map((calls, key) => {
                             return (
                                 <div className="log-screen-row">
-                                    <Link to={ROUTES.NOTES}> 
+                                    <Link to={{
+                                        pathname: 'notes',
+                                        state: {
+                                            call: calls[0]
+                                        }
+                                    }} > 
                                         <div className="log-call img1">
-                                            <p className="log-call-time">{getStartTime(calls[0].start_time)}</p>
+                                            <p className="log-call-time">{getStartTime(calls[0].end_time)}</p>
                                         </div>
+                                        <p style={{color: '#17837E', fontWeight: 'bold', textAlign: 'center'}}>{calls[0].counselor_name}</p>
                                     </Link>
-                                    <Link to={ROUTES.NOTES}> 
+                                    <Link to={{
+                                        pathname: 'notes',
+                                        state: {
+                                            call: calls[1]
+                                        }
+                                    }} > 
                                         <div className="log-call img1">
-                                            <p className="log-call-time">{getStartTime(calls[1].start_time)}</p>
+                                            <p className="log-call-time">{getStartTime(calls[1].end_time)}</p>
                                         </div>
+                                        <p style={{color: '#17837E', fontWeight: 'bold', textAlign: 'center'}}>{calls[1].counselor_name}</p>
                                     </Link>
-                                    <Link to={ROUTES.NOTES}> 
+                                    <Link to={{
+                                        pathname: 'notes',
+                                        state: {
+                                            call: calls[2]
+                                        }
+                                    }} > 
                                         <div className="log-call img1">
-                                            <p className="log-call-time">{getStartTime(calls[2].start_time)}</p>
+                                            <p className="log-call-time">{getStartTime(calls[2].end_time)}</p>
                                         </div>
+                                        <p style={{color: '#17837E', fontWeight: 'bold', textAlign: 'center'}}>{calls[2].counselor_name}</p>
                                     </Link>
                                 </div>
                             );

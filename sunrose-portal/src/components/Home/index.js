@@ -78,11 +78,8 @@ class HomeConst extends Component {
                 
                     {!this.state.selectLog && (
                         <div className="home-container-outer">
-                        <div className="home-container-inner">
-                            <div className="home-c1">
-
-                            </div>
-                            <div className="home-c2">
+                        <div className="home-container-inner" style={{padding: '30px 30px', height: 'auto'}}>
+                        <div style={{height: '100%', width: '100%'}}>
                                 <div className="home-c2-title">
                                     <div>
                                         <img src={dotSrc} style={{width: 30, display: 'inline-block', padding: '0px 5px', verticalAlign: 'unset'}}></img>
@@ -117,8 +114,8 @@ class HomeConst extends Component {
                                 <button className="home-log-btn" onClick={this.toggleSelectLog}>Log a call</button>
                                 <Link to={ROUTES.LOGS} className="home-prev-logs"><p>View previous logs</p></Link>
                                 </div>
+                                </div>
                             </div>
-                        </div>
                         </div>
 
                     )}
